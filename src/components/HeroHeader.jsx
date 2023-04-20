@@ -4,18 +4,26 @@ import {
   Link,
   Heading,
   VStack,
-  HStack,
+  Flex,
   Button,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import img from "../../public/splashasset.png";
 import * as URL_CONSTANTS from "../constants/constants.js";
 
 const HeroHeader = () => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
-    <Box bgColor="orange.50" pt="1%" pb="1%" pl="5%" pr="5%">
-      <HStack pr="2%" pl="2%" pt="3%" pb="3%">
-        <VStack textAlign="left" pt="2%">
+    <Box bgColor="orange.50" pt="1%" pb="1%" pl="5%" pr="5%" width="100%">
+      <Flex
+        direction={isMobile ? "column" : "row"}
+        pt="3%"
+        pb="3%"
+        alignItems="center"
+      >
+        <VStack pt="2%">
           <Heading as="h1" size="3xl" textColor="black">
             Your Gateway to a New Beginning
           </Heading>
@@ -24,24 +32,36 @@ const HeroHeader = () => {
             vibrant community for aspiring professionals from diverse
             backgrounds seeking to transform their careers.
           </Text>
-          <HStack width="100%" pt="3%">
-            <Box pl="1%" pr="1%">
+          <Flex
+            width="100%"
+            pt="3%"
+            justifyContent={isMobile ? "space-evenly" : "flex-start"}
+          >
+            <Box pl={isMobile ? 0 : "1%"} pr={isMobile ? 0 : "1%"}>
               {" "}
               <a href={URL_CONSTANTS.DISCORD_URL}>
-                <Button colorScheme="pink">Join us</Button>
+                <Button colorScheme="pink" size={isMobile ? "lg" : "md"}>
+                  Join us
+                </Button>
               </a>
             </Box>
-            <Box>
+            <Box pl={isMobile ? 0 : "1%"} pr={isMobile ? 0 : "1%"}>
               {" "}
               <a href={URL_CONSTANTS.TCC_NOTION_URL}>
-                <Button colorScheme="pink">Resources</Button>
+                <Button colorScheme="pink" size={isMobile ? "lg" : "md"}>
+                  Resources
+                </Button>
               </a>
             </Box>
-          </HStack>
+          </Flex>
         </VStack>
 
-        <Image src={img} width={800} height={100} />
-      </HStack>
+        {isMobile ? (
+          <Image src={img} width={400} height={50} />
+        ) : (
+          <Image src={img} width={800} height={100} />
+        )}
+      </Flex>
     </Box>
   );
 };

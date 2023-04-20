@@ -1,4 +1,13 @@
-import { Box, HStack, Button, Image, Heading, Link } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Button,
+  Image,
+  Heading,
+  Link,
+  Flex,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import * as URL_CONSTANTS from "../constants/constants.js";
 
 const menuItems = [
@@ -27,17 +36,18 @@ const menuItems = [
     linkPath: URL_CONSTANTS.DISCORD_URL,
   },
 ];
-
 const Header = () => {
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
-    <HStack
+    <Flex
       bgColor="white"
-      pt="1%"
-      pb="1%"
-      pl="5%"
-      pr="5%"
+      py="1%"
+      px="5%"
       justifyContent="space-between"
-      //borderBottom="1px solid #e2e8f0"
+      w="100%"
+      wrap="wrap"
+      justifyContent="center"
     >
       <Link href="/">
         <HStack>
@@ -45,29 +55,53 @@ const Header = () => {
             src="https://i.imgur.com/IRXSGCY.png"
             alt="techchangelogo"
             boxSize="15%"
+            ml={isMobile ? "10%" : "0%"}
+            maxW="100%"
           />
-          <Heading as="h1" size="md" textColor="black">
+          <Heading as="h1" size={isMobile ? "lg" : "md"} textColor="black">
             Tech Career Change
           </Heading>
-        </HStack>{" "}
+        </HStack>
       </Link>
-      <HStack boxSize="50%">
+      <Flex
+        direction={isMobile ? "column" : "row"}
+        boxSize={isMobile ? "100%" : "50%"}
+        wrap="wrap"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
         {menuItems.map((item) => {
           return (
-            <Link href={item.linkPath} key={item.linkName} pr="3%" pl="3%">
+            <Link
+              href={item.linkPath}
+              key={item.linkName}
+              py={isMobile ? 1 : 4}
+              px={3}
+            >
               <Box textColor="black">
-                <Heading as="h1" size="sm" textColor="black">
+                <Heading
+                  as="h1"
+                  size={isMobile ? "lg" : "sm"}
+                  textColor="black"
+                >
                   {item.linkName}
                 </Heading>
               </Box>{" "}
             </Link>
           );
         })}
-      </HStack>
+      </Flex>
+
       <a href={URL_CONSTANTS.DISCORD_URL}>
-        <Button colorScheme="pink">Join us</Button>
+        <Button
+          colorScheme="pink"
+          mt={isMobile ? 4 : 2}
+          size={isMobile ? "lg" : "md"}
+        >
+          Join us
+        </Button>
       </a>
-    </HStack>
+    </Flex>
   );
 };
 

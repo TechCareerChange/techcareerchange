@@ -9,6 +9,7 @@ import {
   Container,
   Grid,
   GridItem,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import img1 from "../../public/screenshot1.png";
@@ -56,6 +57,12 @@ const resourceContent = [
 ];
 
 const HomeBody = () => {
+  const resourceGridColumns = useBreakpointValue({
+    base: "repeat(1, 1fr)",
+    md: "repeat(3, 1fr)",
+  });
+  const vStackWidth = useBreakpointValue({ base: "100%", md: "50%" });
+
   return (
     <Box bgColor="orange.50" pt="1%" pb="1%" pr="5%">
       <VStack>
@@ -64,8 +71,7 @@ const HomeBody = () => {
           <Image src={img2} width={1300} height={100} />
         </HStack>
       </VStack>
-
-      <VStack textAlign="center" pt="2%" pl="25%" pr="25% " pb="2%">
+      <VStack textAlign="center" pt="2%" w={vStackWidth} mx="auto" pb="2%">
         <Heading as="h1" size="3xl" textColor="black">
           Ready for a fresh start in the tech industry?
         </Heading>
@@ -82,14 +88,18 @@ const HomeBody = () => {
           </a>
         </Text>
       </VStack>
-
       <Box textAlign="center" pt="2%" pb="2%">
         <Heading as="h1" size="xl" textColor="black">
           Explore our Resources
         </Heading>
       </Box>
-
-      <Grid templateColumns="repeat(3, 1fr)" gap={6} pt="2%" pb="2%" px="7%">
+      <Grid
+        templateColumns={resourceGridColumns}
+        gap={6}
+        pt="2%"
+        pb="2%"
+        px="7%"
+      >
         {resourceContent.map((entry, index) => {
           return (
             <GridItem key={entry.title}>
@@ -105,15 +115,14 @@ const HomeBody = () => {
           );
         })}
       </Grid>
-
       <Box textAlign="center" pt="2%" pb="3%">
-        <Heading as="h1" size="lg" textColor="black" pb="1%">
+        <Heading as="h1" size="lg" textColor="black" pb="2%">
           Check out our community and start your tech journey today!
         </Heading>
         <a href={URL_CONSTANTS.DISCORD_URL}>
           <Button colorScheme="pink">Join us</Button>
         </a>
-      </Box>
+      </Box>{" "}
     </Box>
   );
 };
