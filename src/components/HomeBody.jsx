@@ -98,7 +98,8 @@ const HomeBody = () => {
         gap={6}
         pt="2%"
         pb="2%"
-        px="7%"
+        px="5%"
+        textAlign="center"
       >
         {resourceContent.map((entry, index) => {
           return (
