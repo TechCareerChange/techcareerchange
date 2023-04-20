@@ -1,5 +1,7 @@
 import Header from "../components/Header";
 import CTABanner from "../components/CTABanner";
+import Footer from "../components/Footer";
+
 import { Box, Text } from "@chakra-ui/react";
 
 const Resources = () => {
@@ -10,6 +12,7 @@ const Resources = () => {
       <Text fontSize="2xl" color="black" p="20%">
         Career Change Resources page coming soon!
       </Text>
+      <Footer />
     </Box>
   );
 };
