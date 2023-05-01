@@ -6,6 +6,10 @@ export default function Document() {
       <Head>
         <title>Tech Career Change</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="google-site-verification"
+          content="A93n3YUHjbkpq4HddOYSGmzaFvM3FisNwVcsMsX0EP8"
+        />
       </Head>
       <body>
         <Main />
